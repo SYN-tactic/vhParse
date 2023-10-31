@@ -69,12 +69,15 @@ while read line; do
       DISPLAY_NAME="Unknown"
     fi
     if [ "$ONLINE_STATUS" == "online" ]; then
-      echo "The Viking [$DISPLAY_NAME]($PROFILE_LINK) has arrived in Valheim!🍻"
-      ./send_discord.sh "$WEBHOOK_URL" "The Viking [$DISPLAY_NAME]($PROFILE_LINK) has arrived in Valheim!🍻"
+      MSG="The Viking [$DISPLAY_NAME](<$PROFILE_LINK>) has arrived in Valheim!"
+      # MSG="The Viking ***$DISPLAY_NAME*** has arrived in Valheim!🍻"
+      echo "$MSG"
+      ./send_discord.sh "$WEBHOOK_URL" "$MSG"
     elif [ "$ONLINE_STATUS" == "offline" ]; then
-      echo "The Viking [$DISPLAY_NAME]($PROFILE_LINK) has left to greener pastures.🐄"
-      pwd
-      ./send_discord.sh "$WEBHOOK_URL" "The Viking [$DISPLAY_NAME]($PROFILE_LINK) has left to greener pastures.🐄"
+      MSG="The Viking [$DISPLAY_NAME](<$PROFILE_LINK>) has left to greener pastures.🐄"
+      # MSG="The Viking *$DISPLAY_NAME* has left to greener pastures.🐄"
+      echo "$MSG" 
+      ./send_discord.sh "$WEBHOOK_URL" "$MSG" 
     else 
       echo 'Player status is unknown'
     fi
