@@ -42,3 +42,25 @@ export DISCORD_VALHEIM_WEBHOOK=https://replace-all-this-with-your-webhook-no-don
 Now click the keys `ctrl+b` and `d`. This will leave tmux running in the background and you are good to go!
 
 It may be that your console log file is located somewhere different. Replace the `../log/console/vhserver-console.log` part above with the [path](https://unix.stackexchange.com/a/131585) to where your console file is located. 
+
+
+## Troubleshooting and Customizing
+The username you see may not be what you expect. The script attempts to get the username of the steam user using just their profile url. This may not always work. But, you can always update the `players.json` file with the name you want to appear for the user.
+For example:
+```json
+{
+"76561198054431787": {
+    "last_connected": "1698351820",
+    "status": "offline",
+    "profile_link": "https://steamcommunity.com/profiles/76561198054431787",
+    "viking_name": "Brogr",
+    "steam_name": "Dramorilian"
+  }
+}
+```
+You will need to add the `"viking_name"` key yourself, and put the players' viking name there as the value (I haven't quite implemented a way to automate grabbing this info yet).
+And of course, you can always change the `"steam_name"` key to whatever you want. If it's present already, the script won't bother trying to retrieve it again.
+
+## Ideas for what to do in the future
+- [ ] Automatically grab the `viking_name` of the player
+- [ ] Include a users' steam profile picture in the message delivered to discord
